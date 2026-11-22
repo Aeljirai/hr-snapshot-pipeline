@@ -1,0 +1,13 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'europe-west9-docker.pkg.dev/$PROJECT_ID/hr-pipeline/load-hr-snapshot:$SHORT_SHA', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'europe-west9-docker.pkg.dev/$PROJECT_ID/hr-pipeline/load-hr-snapshot:$SHORT_SHA']
+
+images:
+  - 'europe-west9-docker.pkg.dev/$PROJECT_ID/hr-pipeline/load-hr-snapshot:$SHORT_SHA'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
